@@ -7,12 +7,9 @@ node {
         stage('Test') {
             sh 'bash ./jenkins/scripts/test.sh'
         }
-        stage('Manual Approval') {
-            input message: 'Lanjutkan ke tahap Deploy?'
-        }
         stage('Deploy') {
             sh 'bash ./jenkins/scripts/deliver.sh'
-            sh 'sleep 60'
+            input message: 'Aplikasi berjalan di http://localhost:3000. Klik Proceed setelah selesai mencoba.'
             sh 'bash ./jenkins/scripts/kill.sh'
         }
     }
