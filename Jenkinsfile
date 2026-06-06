@@ -15,5 +15,9 @@ node {
             sh 'sleep 60'
             sh 'bash ./jenkins/scripts/kill.sh'
         }
+        stage('Archive') {
+            sh 'npm test > log.txt 2>&1 || true'
+            archiveArtifacts artifacts: 'log.txt', fingerprint: true
+        }
     }
 }
