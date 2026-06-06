@@ -9,7 +9,7 @@ node {
         }
         stage('Deploy') {
             sh 'bash ./jenkins/scripts/deliver.sh'
-            input message: 'Aplikasi berjalan di http://localhost:3000. Klik Proceed setelah selesai mencoba.'
+            sh 'sleep 60'
             sh 'bash ./jenkins/scripts/kill.sh'
         }
     }
